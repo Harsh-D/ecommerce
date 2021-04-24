@@ -4,11 +4,27 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+import { StrictMode } from "react";
+import setupMockServer from "./api/mock.server";
+
+import { CartProvider } from "./context/cart-context";
+import { WishlistProvider } from "./context/wishlist-context";
+import { ProductlistProvider } from "./context/productlist-context";
+setupMockServer();
+
+const rootElement = document.getElementById("root");
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <StrictMode>
+    <ProductlistProvider>
+      <WishlistProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </WishlistProvider>
+    </ProductlistProvider>
+  </StrictMode>,
+  rootElement
 );
 
 // If you want to start measuring performance in your app, pass a function

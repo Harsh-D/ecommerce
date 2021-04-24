@@ -25,7 +25,7 @@ const wishlistReducer = (state, action) => {
     case "ADD_TO_WISHLIST":
       return {
         ...state,
-        itemsInWishlist: state.itemsInWishlist.concat(action.payload)
+        itemsInWishlist: state.itemsInWishlist.concat(action.payload),
       };
     case "INCREMENT":
       return {
@@ -34,7 +34,7 @@ const wishlistReducer = (state, action) => {
           item.id === action.payload.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
-        )
+        ),
       };
 
     case "DECREMENT":
@@ -44,14 +44,14 @@ const wishlistReducer = (state, action) => {
           item.id === action.payload.id
             ? { ...item, quantity: item.quantity - 1 }
             : item
-        )
+        ),
       };
     case "REMOVE":
       return {
         ...state,
         itemsInWishlist: state.itemsInWishlist.filter(
           (prevItem) => prevItem.id !== action.payload.id
-        )
+        ),
       };
 
     default:
@@ -64,42 +64,54 @@ function Wishlist() {
   return (
     <>
       <h1>Wishlist </h1>
-      <ul>
+      <div className="component-container card-div">
         {itemsInWishlist.map((item) => {
           return (
-            <li key={item.id}>
-              <div
-                style={{ border: "1px solid", margin: "1rem", padding: "1rem" }}
+            <div
+              key={item.id}
+              style={{
+                border: "1px ",
+                margin: "1rem",
+                padding: "1rem",
+                boxShadow: "5px 10px 5px #F3F4F6",
+              }}
+            >
+              {item.name}
+              <p>{item.price}</p>
+              <p>
+                <img
+                  src={item.image}
+                  alt="product"
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </p>
+              <button
+                onClick={() =>
+                  wishlistDispatch({ type: "INCREMENT", payload: item })
+                }
               >
-                {item.name}
-                <p>{item.price}</p>
-                <button
-                  onClick={() =>
-                    wishlistDispatch({ type: "INCREMENT", payload: item })
-                  }
-                >
-                  +
-                </button>
-                {item.quantity}
-                <button
-                  onClick={() =>
-                    wishlistDispatch({ type: "DECREMENT", payload: item })
-                  }
-                >
-                  -
-                </button>
-                <button
-                  onClick={() =>
-                    wishlistDispatch({ type: "REMOVE", payload: item })
-                  }
-                >
-                  Remove From Wishlist
-                </button>
-              </div>
-            </li>
+                +
+              </button>
+              {item.quantity}
+              <button
+                onClick={() =>
+                  wishlistDispatch({ type: "DECREMENT", payload: item })
+                }
+              >
+                -
+              </button>
+              <button
+                className="button secondary-button"
+                onClick={() =>
+                  wishlistDispatch({ type: "REMOVE", payload: item })
+                }
+              >
+                Remove From Wishlist
+              </button>
+            </div>
           );
         })}
-      </ul>
+      </div>
     </>
   );
 }

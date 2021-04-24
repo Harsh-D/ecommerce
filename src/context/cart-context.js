@@ -34,12 +34,12 @@ const cartReducer = (state, action) => {
             item.id === action.payload.id
               ? { ...item, quantity: item.quantity + 1 }
               : item
-          )
+          ),
         };
       }
       return {
         ...state,
-        itemsInCart: state.itemsInCart.concat(action.payload)
+        itemsInCart: state.itemsInCart.concat(action.payload),
       };
     case "INCREMENT":
       return {
@@ -48,7 +48,7 @@ const cartReducer = (state, action) => {
           item.id === action.payload.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
-        )
+        ),
       };
 
     case "DECREMENT":
@@ -58,14 +58,14 @@ const cartReducer = (state, action) => {
           item.id === action.payload.id
             ? { ...item, quantity: item.quantity - 1 }
             : item
-        )
+        ),
       };
     case "REMOVE":
       return {
         ...state,
         itemsInCart: state.itemsInCart.filter(
           (prevItem) => prevItem.id !== action.payload.id
-        )
+        ),
       };
 
     default:
@@ -83,7 +83,12 @@ const Cart = () => {
           return (
             <div
               key={item.id}
-              style={{ border: "1px solid", margin: "1rem", padding: "1rem" }}
+              style={{
+                border: "1px ",
+                margin: "1rem",
+                padding: "1rem",
+                boxShadow: "5px 10px 5px #F3F4F6"
+              }}
             >
               {item.name}
               <p>{item.price}</p>
@@ -110,6 +115,7 @@ const Cart = () => {
                 -
               </button>
               <button
+                className="button secondary-button"
                 onClick={() => cartDispatch({ type: "REMOVE", payload: item })}
               >
                 Remove From Cart

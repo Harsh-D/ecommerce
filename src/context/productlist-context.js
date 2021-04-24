@@ -12,7 +12,7 @@ export function useProductlist() {
 
 export function ProductlistProvider({ children }) {
   const [state, dispatch] = useReducer(productlistReducer, {
-    itemsInProductlist
+    itemsInProductlist,
   });
 
   return (
@@ -20,7 +20,7 @@ export function ProductlistProvider({ children }) {
       value={{
         itemsInProductlist: state.itemsInProductlist,
         dispatch,
-        Products
+        Products,
       }}
     >
       {children}
@@ -60,7 +60,7 @@ const productlistReducer = (state, action) => {
     case "ADD_TO_PRODUCTLIST":
       return {
         ...state,
-        itemsInProductlist: action.payload
+        itemsInProductlist: action.payload,
       };
     case "HIGH_TO_LOW":
       function compareHighToLow(a, b) {
@@ -70,7 +70,9 @@ const productlistReducer = (state, action) => {
       }
       return {
         ...state,
-        itemsInProductlist: [...state.itemsInProductlist].sort(compareHighToLow)
+        itemsInProductlist: [...state.itemsInProductlist].sort(
+          compareHighToLow
+        ),
       };
 
     case "LOW_TO_HIGH":
@@ -81,7 +83,9 @@ const productlistReducer = (state, action) => {
       }
       return {
         ...state,
-        itemsInProductlist: [...state.itemsInProductlist].sort(compareLowToHigh)
+        itemsInProductlist: [...state.itemsInProductlist].sort(
+          compareLowToHigh
+        ),
       };
 
     default:
@@ -107,7 +111,7 @@ function Products() {
 
   const {
     itemsInProductlist,
-    dispatch: productlistDispatch
+    dispatch: productlistDispatch,
   } = useProductlist();
   const { dispatch: cartDispatch } = useCart();
   const { dispatch: wishlistDispatch } = useWishlist();
@@ -136,9 +140,10 @@ function Products() {
               key={item.id}
               className="card"
               style={{
-                border: "1px solid",
+                border: "1px ",
                 margin: "1rem",
-                padding: "1rem"
+                padding: "1rem",
+                boxShadow: "5px 10px 5px #F3F4F6",
               }}
             >
               {item.name}
@@ -151,10 +156,11 @@ function Products() {
                 />
               </p>
               <button
+                className="button primary-button"
                 onClick={() =>
                   cartDispatch({
                     type: "ADD_TO_CART",
-                    payload: item
+                    payload: item,
                   })
                 }
               >
@@ -162,10 +168,11 @@ function Products() {
               </button>
 
               <button
+                className="button secondary-button"
                 onClick={() =>
                   wishlistDispatch({
                     type: "ADD_TO_WISHLIST",
-                    payload: item
+                    payload: item,
                   })
                 }
               >

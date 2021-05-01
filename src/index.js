@@ -6,12 +6,12 @@ import reportWebVitals from './reportWebVitals';
 
 
 import { StrictMode } from "react";
-import setupMockServer from "./api/mock.server";
+//import setupMockServer from "./api/mock.server";
 
 import { CartProvider } from "./context/cart-context";
 import { WishlistProvider } from "./context/wishlist-context";
 import { ProductlistProvider } from "./context/productlist-context";
-setupMockServer();
+//setupMockServer();
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(

@@ -14,7 +14,7 @@ export default function App() {
   useEffect(() => {
     (async function () {
       try {
-        const response = await axios.get("/api/products");
+        const response = await axios.get("https://doing-it-live-mongoose-1704.harshdeshpande1.repl.co/products/");
         productlistDispatch({
           type: "ADD_TO_PRODUCTLIST",
           payload: response.data.products
@@ -28,18 +28,18 @@ export default function App() {
 
   return (
     <div className="App">
-      <nav class="nav-main nav-primary">
-        <div class="nav--logo">
+      <nav className="nav-main nav-primary">
+        <div className="nav--logo">
           <p>HD </p>
         </div>
-        <ul class="list nav--list">
-          <li class="nav-item" onClick={() => setRoute("products")}>
+        <ul className="list nav--list">
+          <li className="nav-item" onClick={() => setRoute("products")}>
             PRODUCTS
           </li>
-          <li class="nav-item" onClick={() => setRoute("cart")}>
+          <li className="nav-item" onClick={() => setRoute("cart")}>
             CART
           </li>
-          <li class="nav-item" onClick={() => setRoute("wishlist")}>
+          <li className="nav-item" onClick={() => setRoute("wishlist")}>
             WISHLIST
           </li>
         </ul>

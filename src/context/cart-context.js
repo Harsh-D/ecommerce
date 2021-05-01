@@ -25,13 +25,13 @@ const cartReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_CART":
       if (
-        state.itemsInCart.filter((item) => item.id === action.payload.id)
+        state.itemsInCart.filter((item) => item._id === action.payload._id)
           .length > 0
       ) {
         return {
           ...state,
           itemsInCart: state.itemsInCart.map((item) =>
-            item.id === action.payload.id
+            item._id === action.payload._id
               ? { ...item, quantity: item.quantity + 1 }
               : item
           ),
@@ -45,7 +45,7 @@ const cartReducer = (state, action) => {
       return {
         ...state,
         itemsInCart: state.itemsInCart.map((item) =>
-          item.id === action.payload.id
+          item._id === action.payload._id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
@@ -55,7 +55,7 @@ const cartReducer = (state, action) => {
       return {
         ...state,
         itemsInCart: state.itemsInCart.map((item) =>
-          item.id === action.payload.id
+          item._id === action.payload._id
             ? { ...item, quantity: item.quantity - 1 }
             : item
         ),
@@ -64,7 +64,7 @@ const cartReducer = (state, action) => {
       return {
         ...state,
         itemsInCart: state.itemsInCart.filter(
-          (prevItem) => prevItem.id !== action.payload.id
+          (prevItem) => prevItem._id !== action.payload._id
         ),
       };
 
@@ -82,7 +82,7 @@ const Cart = () => {
         {itemsInCart.map((item) => {
           return (
             <div
-              key={item.id}
+              key={item._id}
               style={{
                 border: "1px ",
                 margin: "1rem",

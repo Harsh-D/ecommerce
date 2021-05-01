@@ -31,7 +31,7 @@ const wishlistReducer = (state, action) => {
       return {
         ...state,
         itemsInWishlist: state.itemsInWishlist.map((item) =>
-          item.id === action.payload.id
+          item._id === action.payload._id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
@@ -41,7 +41,7 @@ const wishlistReducer = (state, action) => {
       return {
         ...state,
         itemsInWishlist: state.itemsInWishlist.map((item) =>
-          item.id === action.payload.id
+          item._id === action.payload._id
             ? { ...item, quantity: item.quantity - 1 }
             : item
         ),
@@ -50,7 +50,7 @@ const wishlistReducer = (state, action) => {
       return {
         ...state,
         itemsInWishlist: state.itemsInWishlist.filter(
-          (prevItem) => prevItem.id !== action.payload.id
+          (prevItem) => prevItem._id !== action.payload._id
         ),
       };
 
@@ -68,7 +68,7 @@ function Wishlist() {
         {itemsInWishlist.map((item) => {
           return (
             <div
-              key={item.id}
+              key={item._id}
               style={{
                 border: "1px ",
                 margin: "1rem",

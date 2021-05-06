@@ -1,8 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 import { useCart } from "./cart-context";
 import { useWishlist } from "./wishlist-context";
-//import uuid from "react-uuid";
-//import axios from "axios";
+import {Products} from "../Components/Products/Products"
 
 const ProductlistContext = createContext();
 
@@ -92,96 +91,3 @@ const productlistReducer = (state, action) => {
       return { state };
   }
 };
-
-function Products() {
-  // useEffect(() => {
-  //   (async function () {
-  //     try {
-  //       const response = await axios.get("/api/products");
-  //       productlistDispatch({
-  //         type: "ADD_TO_PRODUCTLIST",
-  //         payload: response.data.products
-  //       });
-  //     } catch (error) {
-  //       console.error("error", error);
-  //     }
-  //   })();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
-  const {
-    itemsInProductlist,
-    dispatch: productlistDispatch,
-  } = useProductlist();
-  const { dispatch: cartDispatch } = useCart();
-  const { dispatch: wishlistDispatch } = useWishlist();
-  return (
-    <>
-      <h1>Products </h1>
-      <div className="sideBar">
-        <input
-          type="radio"
-          name="sort"
-          onChange={() => productlistDispatch({ type: "HIGH_TO_LOW" })}
-        />
-        high to low
-        <input
-          type="radio"
-          name="sort"
-          onChange={() => productlistDispatch({ type: "LOW_TO_HIGH" })}
-        />
-        low to high
-      </div>
-
-      <div className="component-container card-div">
-        {itemsInProductlist.map((item) => {
-          return (
-            <div
-              key={item._id}
-              className="card"
-              style={{
-                border: "1px ",
-                margin: "1rem",
-                padding: "1rem",
-                boxShadow: "5px 10px 5px #F3F4F6",
-              }}
-            >
-              {item.name}
-              <p>{item.price}</p>
-              <p>
-                <img
-                  src={item.image}
-                  alt="product"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </p>
-              <button
-                className="button primary-button"
-                onClick={() =>
-                  cartDispatch({
-                    type: "ADD_TO_CART",
-                    payload: item,
-                  })
-                }
-              >
-                Add to Cart
-              </button>
-
-              <button
-                className="button secondary-button"
-                onClick={() =>
-                  wishlistDispatch({
-                    type: "ADD_TO_WISHLIST",
-                    payload: item,
-                  })
-                }
-              >
-                Add to Wishlist
-              </button>
-            </div>
-          );
-        })}
-      </div>
-    </>
-  );
-}

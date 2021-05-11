@@ -11,8 +11,9 @@ export function Products() {
     const { dispatch: wishlistDispatch } = useWishlist();
     return (
       <>
-        <h1>Products </h1>
-        <div className="sideBar">
+        <h1>Perfumes </h1>
+        <div>
+          Sort by price
           <input
             type="radio"
             name="sort"

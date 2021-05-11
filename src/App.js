@@ -30,7 +30,7 @@ export default function App() {
     <div className="App">
       <nav className="nav-main nav-primary">
         <div className="nav--logo">
-          <p>HD </p>
+          <p>Log<sub>N</sub>Shop </p>
         </div>
         <ul className="list nav--list">
           <li className="nav-item" onClick={() => setRoute("products")}>
@@ -44,7 +44,6 @@ export default function App() {
           </li>
         </ul>
       </nav>
-
       {route === "products" && <Products />}
       {route === "cart" && <Cart />}
       {route === "wishlist" && <Wishlist />}

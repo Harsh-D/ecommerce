@@ -1,6 +1,4 @@
 import { createContext, useContext, useReducer } from "react";
-import { useCart } from "./cart-context";
-import { useWishlist } from "./wishlist-context";
 import {Products} from "../Components/Products/Products"
 
 const ProductlistContext = createContext();

@@ -1,7 +1,9 @@
 import {useWishlist} from "../../context/wishlist-context";
+import {useCart} from "../../context/cart-context";
 
 export function Wishlist() {
     const { itemsInWishlist, dispatch: wishlistDispatch } = useWishlist();
+    const {dispatch: cartDispatch} = useCart();
     return (
       <>
         <h1>Wishlist </h1>
@@ -27,21 +29,15 @@ export function Wishlist() {
                     style={{ width: "100%", height: "auto" }}
                   />
                 </p>
-                {/* <button
-                  onClick={() =>
-                    wishlistDispatch({ type: "INCREMENT", payload: item })
-                  }
-                >
-                  +
-                </button>
-                {item.quantity}
                 <button
+                  className="button primary-button"
                   onClick={() =>
-                    wishlistDispatch({ type: "DECREMENT", payload: item })
+                    {cartDispatch({ type: "ADD_TO_CART", payload: item });
+                    wishlistDispatch({ type: "REMOVE", payload: item })}
                   }
                 >
-                  -
-                </button> */}
+                  Move to Cart
+                </button>
                 <button
                   className="button secondary-button"
                   onClick={() =>

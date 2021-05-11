@@ -15,6 +15,7 @@ export function Wishlist() {
                   margin: "1rem",
                   padding: "1rem",
                   boxShadow: "5px 10px 5px #F3F4F6",
+                  width: "200px"
                 }}
               >
                 {item.name}
@@ -26,7 +27,7 @@ export function Wishlist() {
                     style={{ width: "100%", height: "auto" }}
                   />
                 </p>
-                <button
+                {/* <button
                   onClick={() =>
                     wishlistDispatch({ type: "INCREMENT", payload: item })
                   }
@@ -40,7 +41,7 @@ export function Wishlist() {
                   }
                 >
                   -
-                </button>
+                </button> */}
                 <button
                   className="button secondary-button"
                   onClick={() =>

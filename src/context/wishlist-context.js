@@ -24,6 +24,19 @@ const itemsInWishlist = [];
 const wishlistReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_WISHLIST":
+      if (
+        state.itemsInWishlist.filter((item) => item._id === action.payload._id)
+          .length > 0
+      ) {
+        return {
+          ...state,
+          itemsInWishlist: state.itemsInWishlist.map((item) =>
+            item._id === action.payload._id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          ),
+        };
+      }
       return {
         ...state,
         itemsInWishlist: state.itemsInWishlist.concat(action.payload),

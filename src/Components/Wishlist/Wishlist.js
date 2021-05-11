@@ -15,7 +15,7 @@ export function Wishlist() {
                   margin: "1rem",
                   padding: "1rem",
                   boxShadow: "5px 10px 5px #F3F4F6",
-                  width: "200px"
+                  width: "300px"
                 }}
               >
                 {item.name}

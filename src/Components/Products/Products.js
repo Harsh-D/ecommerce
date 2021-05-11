@@ -39,6 +39,7 @@ export function Products() {
                   margin: "1rem",
                   padding: "1rem",
                   boxShadow: "5px 10px 5px #F3F4F6",
+                  width:"300px"
                 }}
               >
                 {item.name}

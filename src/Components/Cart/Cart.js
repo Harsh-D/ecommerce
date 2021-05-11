@@ -3,6 +3,7 @@ import { useCart } from "../../context/cart-context";
 
 export const Cart = () => {
     const { itemsInCart, dispatch: cartDispatch } = useCart();
+    let pricesOfItems = itemsInCart.map((item)=>(item.price));
     return (
       <>
         <h1>Cart </h1>
@@ -15,7 +16,8 @@ export const Cart = () => {
                   border: "1px ",
                   margin: "1rem",
                   padding: "1rem",
-                  boxShadow: "5px 10px 5px #F3F4F6"
+                  boxShadow: "5px 10px 5px #F3F4F6",
+                  width:"200px"
                 }}
               >
                 {item.name}
@@ -52,6 +54,9 @@ export const Cart = () => {
             );
           })}
         </div>
+        <div>
+              {pricesOfItems.reduce((a,b)=>a+b, 0)}
+          </div>
       </>
     );
   };

@@ -77,6 +77,7 @@ export default function App() {
         </ul>
       </nav>
       <Routes>
+        <Route path="/" element={<Products/>} />
         <Route path="/products" element={<Products/>} />
         <Route path="/cart" element={<Cart/>} />
         <Route path="/wishlist" element={<Wishlist/>} />

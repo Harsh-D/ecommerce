@@ -11,11 +11,14 @@ import { StrictMode } from "react";
 import { CartProvider } from "./context/cart-context";
 import { WishlistProvider } from "./context/wishlist-context";
 import { ProductlistProvider } from "./context/productlist-context";
+import { BrowserRouter as Router } from "react-router-dom"
+
 //setupMockServer();
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <StrictMode>
+    <Router>
     <ProductlistProvider>
       <WishlistProvider>
         <CartProvider>
@@ -23,6 +26,7 @@ ReactDOM.render(
         </CartProvider>
       </WishlistProvider>
     </ProductlistProvider>
+    </Router>
   </StrictMode>,
   rootElement
 );

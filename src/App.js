@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useCart } from "./context/cart-context";
 import { useWishlist } from "./context/wishlist-context";
 import { useProductlist } from "./context/productlist-context";
 import axios from "axios";
+import { Routes, Route, NavLink } from "react-router-dom";
 import "./styles.css";
 
 export default function App() {
-  const [route, setRoute] = useState("products");
   const { Wishlist } = useWishlist();
   const { Products, dispatch: productlistDispatch } = useProductlist();
   const { Cart } = useCart();
@@ -14,10 +14,12 @@ export default function App() {
   useEffect(() => {
     (async function () {
       try {
-        const response = await axios.get("https://doing-it-live-mongoose-1704.harshdeshpande1.repl.co/products/");
+        const response = await axios.get(
+          "https://doing-it-live-mongoose-1704.harshdeshpande1.repl.co/products/"
+        );
         productlistDispatch({
           type: "ADD_TO_PRODUCTLIST",
-          payload: response.data.products
+          payload: response.data.products,
         });
       } catch (error) {
         console.error("error", error);
@@ -30,23 +32,53 @@ export default function App() {
     <div className="App">
       <nav className="nav-main nav-primary">
         <div className="nav--logo">
-          <p>Log<sub>N</sub>Shop </p>
+          <p>
+            Log<sub>N</sub>Shop{" "}
+          </p>
         </div>
         <ul className="list nav--list">
-          <li className="nav-item" onClick={() => setRoute("products")}>
-            PRODUCTS
+          <li className="nav-item">
+
+            <NavLink
+              end
+              to="/products"
+              activeClassName="SelectedComponent"
+              activeStyle={{
+                fontWeight: "bold",
+                
+              }}
+            >
+              PRODUCTS
+            </NavLink>
           </li>
-          <li className="nav-item" onClick={() => setRoute("cart")}>
-            CART
+          <li className="nav-item" style={{textDecoration:"none"}}>
+            <NavLink
+              to="/cart"
+              activeStyle={{
+                fontWeight: "bold",
+
+              }}
+            >
+              CART
+            </NavLink>
           </li>
-          <li className="nav-item" onClick={() => setRoute("wishlist")}>
-            WISHLIST
+          <li className="nav-item">
+          <NavLink
+              to="/wishlist"
+              activeStyle={{
+                fontWeight: "bold",
+              }}
+            >
+              WISHLIST
+            </NavLink>
           </li>
         </ul>
       </nav>
-      {route === "products" && <Products />}
-      {route === "cart" && <Cart />}
-      {route === "wishlist" && <Wishlist />}
+      <Routes>
+        <Route path="/products" element={<Products/>} />
+        <Route path="/cart" element={<Cart/>} />
+        <Route path="/wishlist" element={<Wishlist/>} />
+      </Routes>
     </div>
   );
 }

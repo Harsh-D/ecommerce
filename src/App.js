@@ -42,7 +42,7 @@ export default function App() {
             <NavLink
               end
               to="/products"
-              activeClassName="SelectedComponent"
+              className= "NavElement"
               activeStyle={{
                 fontWeight: "bold",
                 
@@ -54,6 +54,7 @@ export default function App() {
           <li className="nav-item" style={{textDecoration:"none"}}>
             <NavLink
               to="/cart"
+              className= "NavElement"
               activeStyle={{
                 fontWeight: "bold",
 
@@ -65,6 +66,7 @@ export default function App() {
           <li className="nav-item">
           <NavLink
               to="/wishlist"
+              className= "NavElement"
               activeStyle={{
                 fontWeight: "bold",
               }}

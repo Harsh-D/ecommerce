@@ -15,7 +15,7 @@ export default function App() {
     (async function () {
       try {
         const response = await axios.get(
-          "https://doing-it-live-mongoose-1704.harshdeshpande1.repl.co/products/"
+          "https://ecommerce-backend.harshdeshpande1.repl.co/products/"
         );
         productlistDispatch({
           type: "ADD_TO_PRODUCTLIST",

@@ -43,7 +43,7 @@ export function Products() {
                 }}
               >
                 {item.name}
-                <p>{item.price}</p>
+                <p>Rs.{item.price}</p>
                 <p>
                   <img
                     src={item.image}
